@@ -117,7 +117,15 @@ void generateAdjacencyMatrix(int V, int** matrix) {
         }
     }
 }
-
+void replaceOnesWithTwos(int V, int** matrix) {
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            if (matrix[i][j] == 1) {
+                matrix[i][j] = 2;
+            }
+        }
+    }
+}
 int main() {
     setlocale(LC_ALL, "ru");
 
@@ -137,9 +145,12 @@ int main() {
 
     //Генерация случайной матрицы смежности
     generateAdjacencyMatrix(V, adjacencyMatrix);
-    printf("\nМатрица смежности графа G:\n");
+    replaceOnesWithTwos(V, adjacencyMatrix);
+    printf("\nМатрица смежности графа G (1 → 2):\n");
     printMatrix(V, adjacencyMatrix);
     printf("\n");
+
+
 
     //Подсчет количества ребер
     int edges = countEdges(V, adjacencyMatrix);
